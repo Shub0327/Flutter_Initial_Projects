@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'qb.dart';
+import 'quote_card.dart';
+
 
 main() => runApp(const MaterialApp(
       home: quotes(),
@@ -13,40 +15,11 @@ class quotes extends StatefulWidget {
   State<quotes> createState() => _quotesState();
 }
 
-Widget quotesTemplate(qu){
-
-  return Card(
-    margin: EdgeInsets.fromLTRB(20, 20 ,20, 0),
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Text(qu.text,
-          style: TextStyle(
-            fontSize: 20,
-          ),
-          ),
-          SizedBox(height: 8,),
-
-          Text(qu.author,
-            style: TextStyle(
-              fontSize: 15.0,
-          ),
-          ),
-        ],
-
-      ),
-    ),
-  );
-
-}
-
 class _quotesState extends State<quotes> {
-   List<qu> Quotes=[
-     qu(text: "hello", author: "will"),
-     qu(text: "mello", author: "will"),
-     qu(text: "jello", author: "will")
+   List<Quote> quotes=[
+     Quote(text: "hello", author: "will"),
+     Quote(text: "mello", author: "will"),
+     Quote(text: "jello", author: "will")
    ];
 
   @override
@@ -60,7 +33,16 @@ class _quotesState extends State<quotes> {
       ),
 
       body: Column(
-        children: Quotes.map((qu) => quotesTemplate(qu)).toList()
+        children: quotes.map((quote) => QuoteCard(
+
+            quote : quote,
+            delete: (){
+              setState(() {
+                quotes.remove(quote);
+              });
+        }
+
+        )).toList()
         )
 
 

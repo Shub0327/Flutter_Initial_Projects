@@ -1,7 +1,7 @@
 
-class qu {
+class Quote {
   String text = "",
       author = "";
 
-  qu({required this.text, required this.author})
+  Quote({required this.text, required this.author})
 ;}
