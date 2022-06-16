@@ -7,12 +7,39 @@ main() => runApp(const MaterialApp(
 
 class quotes extends StatefulWidget {
 
-
-
   const quotes({Key? key}) : super(key: key);
 
   @override
   State<quotes> createState() => _quotesState();
+}
+
+Widget quotesTemplate(qu){
+
+  return Card(
+    margin: EdgeInsets.fromLTRB(20, 20 ,20, 0),
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(qu.text,
+          style: TextStyle(
+            fontSize: 20,
+          ),
+          ),
+          SizedBox(height: 8,),
+
+          Text(qu.author,
+            style: TextStyle(
+              fontSize: 15.0,
+          ),
+          ),
+        ],
+
+      ),
+    ),
+  );
+
 }
 
 class _quotesState extends State<quotes> {
@@ -33,8 +60,7 @@ class _quotesState extends State<quotes> {
       ),
 
       body: Column(
-        children: Quotes.map((e) =>
-            Text('${e.text}-${e.author}')).toList()
+        children: Quotes.map((qu) => quotesTemplate(qu)).toList()
         )
 
 
